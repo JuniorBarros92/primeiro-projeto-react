@@ -12,8 +12,8 @@ import Login from './components/Login/Login.jsx';
       <BrowserRouter>
     <Header />
     <Routes>
-      <Route path="/login" element={<Login />} />
-      <Route path="/*" element={<Home />} />
+      <Route path="/" element={<Home />} />
+      <Route path="/login/*" element={<Login />} />
       </Routes>
     <Footer />
     </BrowserRouter>
