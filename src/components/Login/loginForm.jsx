@@ -1,33 +1,50 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Input from '../Forms/Input';
 import Button from '../Forms/Button';
 import useUserForm from '../../Hooks/useUserForm';
+import { TOKEN_POST } from '../../Api';
 
 
 
-const LoginForm = () => {
-  const username = useUserForm('email');
+const LoginForm = () => {  
+  const username = useUserForm();
   const password = useUserForm();
+  const [loading, setLoading] = React.useState(false);
+  const [error, setError] = React.useState(null);
+  const navigate = useNavigate();
 
-  function handleSubmit(event) {  
+  async function handleSubmit(event) {  
     event.preventDefault();
-    fetch('https://dogsapi.origamid.dev/json/jwt-auth/v1/token', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
+
+    if (username.validate() && password.validate()) {
+      setLoading(true);
+      setError(null);
+      
+      const { url, options} = TOKEN_POST({
         username: username.value,
         password: password.value
-      }),
-    }).then((response) => {
-      console.log(response);
-      return response.json();
-    }).then((json) => {
-      console.log(json);
-    });
-  }
+      });
+      
+      try {
+        const response = await fetch(url, options);
+        const json = await response.json();
+        
+        if(json.token) {
+          localStorage.setItem('token', json.token);
+          navigate('/');
+        } else if(json.code === 'rest_invalid_combo') {
+          setError('Usuário ou senha inválidos');
+        } else {
+          setError(json.message || 'Erro ao fazer login');
+        }
+      } catch(err) {
+        setError('Erro na conexão: ' + err.message);
+      } finally {
+        setLoading(false);
+      }
+    }
+  }   
 
   return (
     <div>
@@ -45,7 +62,8 @@ const LoginForm = () => {
           name="password"
           {...password}
         />
-        <Button>Entrar</Button>
+        {error && <p style={{color: 'red'}}>{error}</p>}
+        <Button type="submit" disabled={loading}>{loading ? 'Carregando...' : 'Entrar'}</Button>
       </form>
 
       <Link to="/login/criar">Cadastro</Link>

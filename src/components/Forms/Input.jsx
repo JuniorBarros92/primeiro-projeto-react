@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './Input.module.css';
 
-const Input = ({ label, onBlur, type, name, value, onChange, error, ...props }) => {
+const Input = ({ label, onBlur, type, name, value, onChange, error }) => {
  
   return (
     <div className={styles.inputWrapper}>
@@ -13,7 +13,6 @@ const Input = ({ label, onBlur, type, name, value, onChange, error, ...props }) 
         type={type}
         value={value}
         onChange={onChange}
-        {...props}
         onBlur={onBlur}
       />
       {error && <p className={styles.error}>{error}</p>}

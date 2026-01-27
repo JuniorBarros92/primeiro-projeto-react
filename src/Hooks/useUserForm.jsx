@@ -28,17 +28,19 @@ const useUserForm = (type) => {
         return true;
     }
 
-    function onChange({ target }) { 
+    const onChange = React.useCallback(({ target }) => { 
         validate(target.value); 
         setValue(target.value);
-    }
+    }, []);
+
+    const onBlur = React.useCallback(() => validate(value), [value]);
 
     return {
         value,
         setValue,
         onChange,
         validate: () => validate(value),
-        onBlur: () => validate(value),
+        onBlur,
         error,
     };
 };
