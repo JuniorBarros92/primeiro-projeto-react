@@ -5,7 +5,7 @@ import Header from './components/Header.jsx';
 import Footer from './components/Footer.jsx';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './components/Home.jsx';
-import Login from './components/Login/Login.jsx';
+import LoginForm from './components/Login/loginForm.jsx';
  function App() {
   return (
     <div>
@@ -13,7 +13,7 @@ import Login from './components/Login/Login.jsx';
     <Header />
     <Routes>
       <Route path="/" element={<Home />} />
-      <Route path="/login/*" element={<Login />} />
+      <Route path="/login" element={<LoginForm />} />
       </Routes>
     <Footer />
     </BrowserRouter>

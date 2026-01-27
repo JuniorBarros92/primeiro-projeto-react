@@ -26,13 +26,26 @@ const LoginForm = () => {
 
   return (
     <div>
-<h1>Login</h1>
-<form action="" onSubmit={handleSubmit}>
-  <Input type="text" value={username} onChange={({target}) => setUsername(target.value)} />
-  <button>Entrar</button>
-</form>
+      <h1>Login</h1>
+      <form action="" onSubmit={handleSubmit}>
+        <Input
+          label="Usuário"
+          type="text"
+          name="username"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+        />
+        <Input
+          label="Senha"
+          type="password"
+          name="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        <button>Entrar</button>
+      </form>
 
-<Link to="/login/criar">Cadastro</Link>
+      <Link to="/login/criar">Cadastro</Link>
     </div>
   );
 };
