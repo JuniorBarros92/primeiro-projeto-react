@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { Children } from 'react';
 import styles from './Button.module.css';
 
-const Button = ({ type, onClick, disabled }) => {
+const Button = ({children, ...props }) => {
   return (
-    <button className={styles.button} type={type} onClick={onClick} disabled={disabled}></button>);
+    <button className={styles.button} {...props}>{children}</button>);
 }
 
 export default Button;

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Input from '../Forms/Input';
+import Button from '../Forms/Button';
 
 
 
@@ -42,7 +43,7 @@ const LoginForm = () => {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <button>Entrar</button>
+        <Button>Entrar</Button>
       </form>
 
       <Link to="/login/criar">Cadastro</Link>
