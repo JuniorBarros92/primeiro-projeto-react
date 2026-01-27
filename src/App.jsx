@@ -7,6 +7,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './components/Home.jsx';
 import LoginForm from './components/Login/loginForm.jsx';
  function App() {
+  console.log('App rendering');
   return (
     <div>
       <BrowserRouter>
