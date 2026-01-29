@@ -4,48 +4,39 @@ import Input from '../Forms/Input';
 import Button from '../Forms/Button';
 import useUserForm from '../../Hooks/useUserForm';
 import { UserContext } from '../../UserContext';
+import Error from '../Helper/Error';
 
-const LoginForm = () => {  
-  const { userLogin, error: contextError, loading: contextLoading } = React.useContext(UserContext);
+const LoginForm = () => {
   const username = useUserForm();
   const password = useUserForm();
-  const [error, setError] = React.useState(null);
 
-  async function handleSubmit(event) {  
+  const { userLogin, error, loading } = React.useContext(UserContext);
+
+  async function handleSubmit(event) {
     event.preventDefault();
 
     if (username.validate() && password.validate()) {
-      setError(null);
-      try {
-        await userLogin(username.value, password.value);
-      } catch(err) {
-        setError('Erro na conexão: ' + err.message);
-      }
+      userLogin(username.value, password.value);
     }
-  }   
+  }
 
   return (
-    <div>
-      <h1>Login</h1>
+    <section className="animeLeft">
+      <h1 className='title'>Login</h1>
       <form action="" onSubmit={handleSubmit}>
-        <Input
-          label="Usuário"
-          type="text"
-          name="username"
-          {...username}
-        />
-        <Input
-          label="Senha"
-          type="password"
-          name="password"
-          {...password}
-        />
-        {(error || contextError) && <p style={{color: 'red'}}>{error || contextError}</p>}
-        <Button type="submit" disabled={contextLoading}>{contextLoading ? 'Carregando...' : 'Entrar'}</Button>
-      </form>
+        <Input label="Usuário" type="text" name="username" {...username} />
+        <Input label="Senha" type="password" name="password" {...password} />
+        {loading ? (
+          <Button disabled>Carregando...</Button>
+        ) : (
+          <Button>Entrar</Button>
+        )}
 
+        <Error error={error} />
+        
+      </form>
       <Link to="/login/criar">Cadastro</Link>
-    </div>
+    </section>
   );
 };
 
