@@ -5,4 +5,13 @@ import svgr from 'vite-plugin-svgr';
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react(), svgr()],
+  server: {
+    proxy: {
+      '/json': {
+        target: 'https://dogsapi.origamid.dev',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/json/, '/json'),
+      },
+    },
+  },
 });
