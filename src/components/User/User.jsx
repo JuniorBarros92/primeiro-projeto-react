@@ -1,14 +1,21 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
+import UserHeader from './UserHeader';
+import Feed from '../Feed/Feed';
+import UsePhotoPost from './UserPhotoPost';
+import UserStarts from './UserStarts';
 
 const User = () => {
-  return (
-    <div>
-      <h2>Usuário</h2>
-      <p>Bem-vindo à sua conta!</p>
-      <Link to="/login/criar">Convidar amigos</Link>
-    </div>
-  );
+  return <section className='container'>
+    <UserHeader />
+    <Routes>
+   
+   <Route path='/' element={<Feed />} />
+   <Route path='postar' element={<UsePhotoPost />} />
+   <Route path='estatisticas' element={<UserStarts />} />
+    </Routes>
+
+  </section>
 };  
 
 export default User;
