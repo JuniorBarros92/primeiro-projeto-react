@@ -8,26 +8,28 @@ import Sair from "../../Assets/sair.svg?react";
 import styles from "./UserHeaderNav.module.css";
 
 const UserHeaderNav = () => {
+
+    const [mobileMenu, setMobileMenu] = React.useState(null);
   const { userLogout } = React.useContext(UserContext);
 
   return (
     <nav className={styles.nav}>
-      <NavLink to="/conta">
+      <NavLink to="/conta" end>
         <MinhasFotos />
-        Minhas fotos
+        {mobileMenu && "Minhas fotos"}
       </NavLink>
       <NavLink to="/conta/estatisticas">
         <Estatisticas />
-        Estatísticas
+        {mobileMenu && "Estatísticas"}
       </NavLink>
       <NavLink to="/conta/postar">
         <AdiconarFoto />
-        Adicionar Foto
+        {mobileMenu && "Adicionar Foto"}
       </NavLink>
 
       <button onClick={userLogout}>
         {" "}
-        <Sair /> Sair
+        <Sair /> {mobileMenu && "Sair"}
       </button>
     </nav>
   );
