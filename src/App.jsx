@@ -5,7 +5,8 @@ import Header from './components/Header.jsx';
 import Footer from './components/Footer.jsx';
 import Home from './components/Home.jsx';
 import Login from './components/Login/Login.jsx';
-import Conta from './components/Conta.jsx';
+import User from './components/User/User.jsx';
+import ProtectedRoute from './components/Helper/ProtectedRoute.jsx';
 
 function App() {
   return (
@@ -13,8 +14,8 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/login/*" element={<Login />} />
-        <Route path="/conta" element={<Conta />} />
+        <Route path="login/*" element={<Login />} />
+        <Route path="conta/*" element={<ProtectedRoute><User /></ProtectedRoute>} />
       </Routes>
       <Footer />
     </>
