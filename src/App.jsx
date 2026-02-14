@@ -6,6 +6,8 @@ import Footer from './components/Footer.jsx';
 import Home from './components/Home.jsx';
 import Login from './components/Login/Login.jsx';
 import User from './components/User/User.jsx';
+import Foto from './components/Foto/Foto.jsx';
+import Perfil from './components/Perfil/Perfil.jsx';
 import ProtectedRoute from './components/Helper/ProtectedRoute.jsx';
 
 function App() {
@@ -16,6 +18,8 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="login/*" element={<Login />} />
         <Route path="conta/*" element={<ProtectedRoute><User /></ProtectedRoute>} />
+        <Route path="foto/:id" element={<Foto />} />
+        <Route path="perfil/:author" element={<Perfil />} />
       </Routes>
       <Footer />
     </>
