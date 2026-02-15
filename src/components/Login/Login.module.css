@@ -4,14 +4,19 @@
   gap: 0;
   min-height: 100vh;
   align-items: stretch;
+  position: relative;
 }
 
 .login::before {
   content: "";
   background: url("../../Assets/login.jpg") no-repeat center center;
   background-size: cover;
+  display: block;
+  width: 100%;
+  height: 100%;
   grid-column: 1;
   grid-row: 1;
+  z-index: 0;
 }
 
 .forms {
@@ -20,6 +25,8 @@
   max-width: 30rem;
   padding: 2rem;
   margin: auto;
+  z-index: 1;
+  background: white;
 }
 @media (max-width: 40rem) {
   .login {
