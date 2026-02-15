@@ -1,28 +1,33 @@
 import React from 'react';
-import './app.css';
+import './App.css';
 import { Routes, Route } from 'react-router-dom';
-import Header from './components/Header.jsx';
-import Footer from './components/Footer.jsx';
-import Home from './components/Home.jsx';
-import Login from './components/Login/Login.jsx';
-import User from './components/User/User.jsx';
-import Foto from './components/Foto/Foto.jsx';
-import Perfil from './components/Perfil/Perfil.jsx';
-import ProtectedRoute from './components/Helper/ProtectedRoute.jsx';
+import Header from './Components/Header';
+import Footer from './Components/Footer';
+import Home from './Components/Home';
+import Login from './Components/Login/Login';
+import User from './components/User/User';
+import ProtectedRoute from './Components/Helper/ProtectedRoute';
+import Photo from './components/Photo/Photo';
 
 function App() {
   return (
-    <>
+    <div>
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="login/*" element={<Login />} />
-        <Route path="conta/*" element={<ProtectedRoute><User /></ProtectedRoute>} />
-        <Route path="foto/:id" element={<Foto />} />
-        <Route path="perfil/:author" element={<Perfil />} />
+        <Route
+          path="conta/*"
+          element={
+            <ProtectedRoute>
+              <User />
+            </ProtectedRoute>
+          }
+        />
+        <Route path="foto/:id" element={<Photo />} />
       </Routes>
       <Footer />
-    </>
+    </div>
   );
 }
 

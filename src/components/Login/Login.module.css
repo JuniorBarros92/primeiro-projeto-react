@@ -11,6 +11,8 @@
   background-size: cover;
   width: 100%;
   height: 100%;
+  grid-column: 1;
+  grid-row: 1;
 }
 .forms {
   max-width: 30rem;
