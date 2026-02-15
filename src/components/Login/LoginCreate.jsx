@@ -2,7 +2,7 @@ import React from "react";
 import Input from "../Forms/Input";
 import Button from "../Forms/Button";
 import useUserForm from "../../Hooks/useUserForm";
-import { USER_POST } from "../../api";
+import { USER_POST } from "../../Api";
 import Error from "../Helper/Error";
 import { UserContext } from "../../UserContext";
 import userFetch from "../../Hooks/userFetch";
