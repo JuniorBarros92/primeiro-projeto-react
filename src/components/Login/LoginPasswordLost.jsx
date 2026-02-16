@@ -5,6 +5,7 @@ import useUserForm from '../../Hooks/useUserForm';
 import useFetch from '../../Hooks/useFetch';
 import { PASSWORD_LOST } from '../../api';
 import Error from '../Helper/Error';
+import Head from '../Helper/Header';
 
 const LoginPasswordLost = () => {
   const login = useUserForm();
@@ -24,6 +25,7 @@ const LoginPasswordLost = () => {
 
   return (
     <section>
+      <Head title="Perdeu a senha?" description="Envie um email para recuperar sua senha no Dogs" />
       <h1 className="title">Perdeu a senha?</h1>
       {data ? (
         <p style={{ color: '#4c1' }}>{data}</p>
