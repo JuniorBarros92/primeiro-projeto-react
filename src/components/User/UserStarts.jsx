@@ -1,5 +1,5 @@
 import React from 'react';
-import Head from '../Helper/Head';
+import Head from '../Helper/Header';
 import useFetch from '../../Hooks/useFetch';
 import { STATS_GET } from '../../api';
 import Loading from '../Helper/Loading';
@@ -24,6 +24,7 @@ const UserStats = () => {
       <div>
         <Head title="Estatísticas" />
         <UserStatsGraphs data={data} />
+        
       </div>
     );
   else return null;

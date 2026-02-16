@@ -94,3 +94,15 @@ a {
 .AppBody {
   flex: 1;
 }
+
+.VictoryContainer,
+.victory-container {
+    height: 300px !important;
+}
+
+.VictoryContainer svg,
+.victory-container svg {
+    width: 100% !important;
+    height: 100% !important;
+    display: block;
+}

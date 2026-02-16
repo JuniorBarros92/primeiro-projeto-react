@@ -7,18 +7,23 @@ const UserStatsGraphs = ({ data }) => {
   const [total, setTotal] = React.useState(0);
 
   React.useEffect(() => {
+    if (!Array.isArray(data)) return;
+
     const graphData = data.map((item) => {
       return {
-        x: item.title,
-        y: Number(item.acessos),
+        x: item.title || `Foto ${item.id || ''}`,
+        y: Number(item.acessos) || 0,
       };
     });
 
-    setTotal(
-      data.map(({ acessos }) => Number(acessos)).reduce((a, b) => a + b, 0),
-    );
+    const totalAccess = data
+      .map(({ acessos }) => Number(acessos) || 0)
+      .reduce((a, b) => a + b, 0);
+
+    setTotal(totalAccess);
     setGraph(graphData);
   }, [data]);
+  
 
   return (
     <section className={`${styles.graph} animeLeft`}>
@@ -27,8 +32,11 @@ const UserStatsGraphs = ({ data }) => {
       </div>
       <div className={styles.graphItem}>
         <VictoryPie
+          key={graph.map((g) => g.x).join('-') || 'pie'}
           data={graph}
           innerRadius={50}
+          animate={{ duration: 500 }}
+          height={220}
           padding={{ top: 20, bottom: 20, left: 80, right: 80 }}
           style={{
             data: {
@@ -44,10 +52,12 @@ const UserStatsGraphs = ({ data }) => {
         />
       </div>
       <div className={styles.graphItem}>
-        <VictoryChart>
-          <VictoryBar alignment="start" data={graph}></VictoryBar>
+        <VictoryChart key={graph.map((g) => g.x).join('-') || 'chart'} domainPadding={{ x: [20, 20] }} height={220}>
+          <VictoryBar alignment="start" data={graph} animate={{ duration: 500 }} />
         </VictoryChart>
       </div>
+
+     
     </section>
   );
 };

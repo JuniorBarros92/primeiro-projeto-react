@@ -13,8 +13,14 @@ const useFetch = () => {
         setError(null);
         setLoading(true);
         response = await fetch(url, options);
-        json = await response.json();
-        if (response.ok === false) throw new Error(json.message);
+        // tenta parsear o json e logar status + corpo para diagnóstico
+        try {
+          json = await response.json();
+        } catch (e) {
+          json = null;
+        }
+
+        if (response.ok === false) throw new Error((json && json.message) || `Request failed with status ${response.status}`);
      
     } catch (err) {
         json = null;
