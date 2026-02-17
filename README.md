@@ -1,16 +1,54 @@
-# React + Vite
+﻿# Dogs — Projeto React
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Aplicação front-end criada com React + Vite que replica as funcionalidades do site Dogs:
 
-Currently, two official plugins are available:
+- Feed de fotos com paginação
+- Área de autenticação (login / logout)
+- Upload de fotos pelo usuário
+- Perfil do usuário com estatísticas (gráficos usando Victory)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+**Começando**
 
-## React Compiler
+- **Pré-requisitos:** Node.js 18+ e npm ou yarn
+- **Instalação:**
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+```bash
+npm install
+```
 
-## Expanding the ESLint configuration
+- **Executar em desenvolvimento:**
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```bash
+npm run dev
+```
+
+- **Build de produção:**
+
+```bash
+npm run build
+```
+
+- **Preview do build:**
+
+```bash
+npm run preview
+```
+
+**Scripts úteis**
+- **`dev`**: inicia o servidor Vite em modo de desenvolvimento
+- **`build`**: gera os arquivos de produção
+- **`preview`**: serve o build gerado
+- **`lint`**: executa o ESLint
+
+**Principais arquivos e pastas**
+- `src/` : código-fonte React
+- `src/components/` : componentes da UI (Header, Footer, Feed, Login, Perfil, Foto...)
+- `src/Hooks/useFetch.jsx` : hook para requisições HTTP
+- `src/api.jsx` : helpers para endpoints da API
+- `src/components/User/UserStatsGraphs.jsx` : gráficos de estatísticas (Victory)
+
+**Configurações importantes**
+- O projeto consome a API pública em `https://dogsapi.origamid.dev/json` (definida em `src/api.jsx`).
+- As rotas do cliente usam `react-router-dom` (apenas um `BrowserRouter` no ponto de entrada `src/index.jsx`).
+
+Se quiser que eu alinhe o README com o conteúdo exato do seu site (texto, imagens, links), cole aqui o texto/URL que deseja usar e eu atualizo o arquivo.
